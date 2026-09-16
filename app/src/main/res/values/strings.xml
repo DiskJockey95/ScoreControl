@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">ScoreControl</string>
+    <string name="app_title">ScoreControl</string>
+    <string name="app_description">Track bids, resolve each round, and keep scores for four players.</string>
+    <string name="setup_title">Set up four players</string>
+    <string name="player_name_hint">Player name</string>
+    <string name="start_game">Start game</string>
+    <string name="lock_bids">Lock bids</string>
+    <string name="next_round">Next round</string>
+    <string name="new_game">New game</string>
+    <string name="reset_game">Reset</string>
+    <string name="round_label">Round %1$d</string>
+    <string name="round_and_minimum_label">Round %1$d  |  Minimum bid: %2$d</string>
+    <string name="enter_bids_prompt">Enter each player bid, then lock the round.</string>
+    <string name="resolve_round_prompt">Mark each player as pass or fail.</string>
+    <string name="all_players_resolved">All players are resolved. Start the next round when ready.</string>
+    <string name="bid_hint">Bid</string>
+    <string name="bid_label">Bid: %1$d</string>
+    <string name="score_label">Score: %1$d</string>
+    <string name="allowed_bids_label">Allowed bids: %1$s</string>
+    <string name="minimum_bid_label">Minimum bid: %1$d</string>
+    <string name="invalid_bid_error">Choose one of the allowed bids: %1$s</string>
+    <string name="minimum_bid_not_met">Minimum bid not met. Need at least %1$d total.</string>
+    <string name="team_label">Team %1$d: %2$s &amp; %3$s</string>
+    <string name="teams_header">Teams</string>
+    <string name="game_over_message">Team %1$d wins! %2$s reached 41+ and %3$s stayed non-negative.</string>
+    <string name="round_tied_message">No winning team this round. Start the next round when ready.</string>
+    <string name="game_over_unknown">Game over.</string>
+    <string name="pass_label">Made</string>
+    <string name="fail_label">Fail</string>
+    <string name="result_pass">Made</string>
+    <string name="result_fail">Failed</string>
+    <string name="need_name_error">Enter a player name.</string>
+    <string name="need_bid_error">Enter a bid for every player.</string>
+</resources>

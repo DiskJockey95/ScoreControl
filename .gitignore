@@ -1,0 +1,22 @@
+# Gradle
+.gradle
+
+# Android Studio / IntelliJ
+/.idea
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+*.iml
+
+# Local config
+/local.properties
+
+.DS_Store
+/app/build
+/build
+/captures
+.externalNativeBuild
+.cxx
