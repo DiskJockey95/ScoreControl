@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ScoreControl"
+rootProject.name = "KeepinScore"
 include(":app")
