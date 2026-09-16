@@ -12,6 +12,8 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.NestedScrollView
 import com.google.android.material.button.MaterialButton
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var setupContainer: View
     private lateinit var gameContainer: View
+    private lateinit var setupTitleText: TextView
     private lateinit var teamsText: TextView
     private lateinit var nameLayouts: List<TextInputLayout>
     private lateinit var nameInputs: List<TextInputEditText>
@@ -89,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         mainScrollView = findViewById(R.id.main)
         setupContainer = findViewById(R.id.setupContainer)
         gameContainer = findViewById(R.id.gameContainer)
+        setupTitleText = findViewById(R.id.setupTitleText)
         teamsText = findViewById(R.id.teamsText)
         roundTitleText = findViewById(R.id.roundTitleText)
         roundStatusText = findViewById(R.id.roundStatusText)
@@ -110,6 +114,19 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.nameInput3),
             findViewById(R.id.nameInput4),
         )
+
+        ViewCompat.setOnApplyWindowInsetsListener(mainScrollView) { view, insets ->
+            val statusBars = insets.getInsets(WindowInsetsCompat.Type.statusBars())
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val ime = insets.getInsets(WindowInsetsCompat.Type.ime())
+            view.setPadding(
+                view.paddingLeft,
+                statusBars.top + dp(16),
+                view.paddingRight,
+                maxOf(systemBars.bottom, ime.bottom) + dp(20)
+            )
+            insets
+        }
 
         setupSetupWatchers()
         setupFocusScrollListeners()
@@ -163,6 +180,7 @@ class MainActivity : AppCompatActivity() {
         phase = Phase.SETUP
         setupContainer.visibility = View.VISIBLE
         gameContainer.visibility = View.GONE
+        setupTitleText.visibility = View.VISIBLE
         newGameButton.visibility = View.GONE
         resetGameButton.visibility = View.GONE
         restoringUi = true
@@ -208,6 +226,7 @@ class MainActivity : AppCompatActivity() {
     private fun renderGame() {
         setupContainer.visibility = View.GONE
         gameContainer.visibility = View.VISIBLE
+        setupTitleText.visibility = View.GONE
         newGameButton.visibility = View.VISIBLE
         resetGameButton.visibility = View.VISIBLE
         teamsText.text = getTeamsText()
@@ -404,10 +423,22 @@ class MainActivity : AppCompatActivity() {
         view.setOnFocusChangeListener { focusedView, hasFocus ->
             if (hasFocus) {
                 mainScrollView.post {
-                    val rect = Rect(0, 0, focusedView.width, focusedView.height)
-                    focusedView.requestRectangleOnScreen(rect, true)
+                    mainScrollView.postDelayed({
+                        scrollFocusedViewIntoView(focusedView)
+                    }, 120)
                 }
             }
+        }
+    }
+
+    private fun scrollFocusedViewIntoView(focusedView: View) {
+        val rect = Rect()
+        focusedView.getDrawingRect(rect)
+        mainScrollView.offsetDescendantRectToMyCoords(focusedView, rect)
+        val visibleBottom = mainScrollView.height - mainScrollView.paddingBottom - dp(24)
+        if (rect.bottom > visibleBottom) {
+            val delta = rect.bottom - visibleBottom
+            mainScrollView.smoothScrollBy(0, delta)
         }
     }
 
