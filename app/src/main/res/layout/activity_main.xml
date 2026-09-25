@@ -33,6 +33,15 @@
                 android:text="@string/reset_game" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/viewLogButton"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:text="@string/view_log" />
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/newGameButton"
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="0dp"
@@ -189,6 +198,30 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/lock_bids" />
+        </LinearLayout>
+
+        <!-- Separate page for viewing the bid log -->
+        <LinearLayout
+            android:id="@+id/bidLogPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="24dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bidLogBackButton"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/back" />
+
+            <LinearLayout
+                android:id="@+id/bidLogList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="12dp" />
         </LinearLayout>
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
