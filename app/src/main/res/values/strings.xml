@@ -32,4 +32,7 @@
     <string name="result_fail">Failed</string>
     <string name="need_name_error">Enter a player name.</string>
     <string name="need_bid_error">Enter a bid for every player.</string>
+    <string name="undo_label">Undo</string>
+    <string name="view_log">Log</string>
+    <string name="back">Back</string>
 </resources>
